@@ -34,13 +34,15 @@ namespace DisneyWebApplication
                     "~/Scripts/datetimepicker.js",
                     "~/Scripts/datetimepicker.templates.js",
                     "~/Scripts/Chart.min.js",
-                    "~/Scripts/angular-chart.min.js"
+                    "~/Scripts/angular-chart.min.js",
+                    "~/Scripts/angular-filter.min.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                    "~/App/app.js",
                    "~/App/services/attractionsServices.js",
                    "~/App/directives/attractionsList.js",
+                   "~/App/directives/chartDirective.js",
                    "~/App/directives/attractionsAggregate.js",
                    "~/App/models/attraction.js"
            ));

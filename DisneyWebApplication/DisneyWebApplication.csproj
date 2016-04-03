@@ -158,9 +158,11 @@
     <Content Include="App\app.js" />
     <Content Include="App\directives\attractionsAggregate.js" />
     <Content Include="App\directives\attractionsList.js" />
+    <Content Include="App\directives\chartDirective.js" />
     <Content Include="App\models\attraction.js" />
     <Content Include="App\services\attractionsServices.js" />
     <Content Include="App\Views\Attractions.html" />
+    <Content Include="App\Views\ChartAttraction.html" />
     <Content Include="App\Views\SelectAggregate.html" />
     <Content Include="App\Views\SelectAttractions.html" />
     <Content Include="Content\bootstrap.css" />
@@ -174,6 +176,7 @@
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\angular-chart.min.js" />
+    <Content Include="Scripts\angular-filter.min.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

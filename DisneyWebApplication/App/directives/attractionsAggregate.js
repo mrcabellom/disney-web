@@ -10,8 +10,9 @@
             controller: ['$scope', function ($scope) {
                 
                 $scope.getAttractionsAggregate = function () {
-                    console.log($scope.endDate);
-                    console.log($scope.startDate);
+                    attractionsService.getAttractionsAggregate($scope.startDate, $scope.endDate, "attraction1").then(function (result) {
+                        $scope.aggregations = result;
+                    });
                 };
             }],
             templateUrl: '/App/Views/SelectAggregate.html'
