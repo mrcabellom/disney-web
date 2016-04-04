@@ -3,7 +3,8 @@
     var dependencies = [
         'ui.bootstrap.datetimepicker',
         'chart.js',
-        'angular.filter'
+        'angular.filter',
+        'wc.Directives'
     ];
     var app = angular.module('disneyApp', dependencies);
     app.constant('utils',{

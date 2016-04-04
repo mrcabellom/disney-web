@@ -1,36 +1,31 @@
-﻿<div ng-repeat="attraction in attractions" class="panel panel-primary">
-    <div class="panel-heading">{{attraction.name}}</div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <img class="img-responsive" src="/Content/Images/attraction.png" />
+﻿<div ng-repeat="attraction in attractions" class="col-md-3 col-sm-12 col-xs-12">
+    <div class="thumbnail">
+        <img class="img-responsive" src="/Content/Images/attraction.png" />
+        <div class="caption">
+            <div class="truncate name-attraction">
+                {{attraction.name || "Attraction Name"}}
+            </div>            
+            <h5>Description Attraction <span class="label label-default">New</span></h5>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Wait time <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{attraction.getWaitTime()}}</h4>
+                </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>Description Attraction <span class="label label-default">New</span></h3>
-                    </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4><span class="label" ng-class="attraction.hasFastPass() ? 'label-success' : 'label-danger'">Fastpass</span></h4>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                       <h4>Wait time <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{attraction.getWaitTime()}}</h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h4><span class="label" ng-class="attraction.hasFastPass() ? 'label-success' : 'label-danger'">Fastpass</span></h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h4><span class="label" ng-class="{
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>
+                        <span class="label" ng-class="{
                                    'label-success': attraction.isOperating(),
-                                   'label-warning': attraction.isDown(), 
+                                   'label-warning': attraction.isDown(),
                                    'label-danger': attraction.isClosed()}">
-                                {{attraction.getStatus()}}
-                             </span>
-                        </h4>
-                    </div>
+                            {{attraction.getStatus()}}
+                        </span>
+                    </h4>
                 </div>
             </div>
         </div>

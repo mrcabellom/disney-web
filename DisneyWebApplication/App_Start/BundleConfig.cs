@@ -44,7 +44,8 @@ namespace DisneyWebApplication
                    "~/App/directives/attractionsList.js",
                    "~/App/directives/chartDirective.js",
                    "~/App/directives/attractionsAggregate.js",
-                   "~/App/models/attraction.js"
+                   "~/App/models/attraction.js",
+                    "~/App/shared/httpInterceptor.js"
            ));
 
         }

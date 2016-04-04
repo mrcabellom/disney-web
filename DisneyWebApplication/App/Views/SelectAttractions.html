@@ -9,7 +9,7 @@
     <tbody> 
     <tr ng-repeat="attraction in attractions"> 
         <td><input ng-model="attraction.selected" type="checkbox" /></td> 
-        <td>{{attraction.name}}</td>
+        <td>{{attraction.name || "Attraction Name"}}</td>
         <td>{{attraction.getStatus()}}</td> 
     </tr> 
     </tbody> 

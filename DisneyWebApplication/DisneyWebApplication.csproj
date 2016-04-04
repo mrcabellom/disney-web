@@ -161,6 +161,7 @@
     <Content Include="App\directives\chartDirective.js" />
     <Content Include="App\models\attraction.js" />
     <Content Include="App\services\attractionsServices.js" />
+    <Content Include="App\shared\httpInterceptor.js" />
     <Content Include="App\Views\Attractions.html" />
     <Content Include="App\Views\ChartAttraction.html" />
     <Content Include="App\Views\SelectAggregate.html" />
