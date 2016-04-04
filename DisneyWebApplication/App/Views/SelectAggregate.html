@@ -40,5 +40,5 @@
 </div>
 
 <div ng-repeat="(key, value) in aggregations | groupBy: 'attractionId'" class="row">
-    <chart-attraction attraction-group-id="key" attraction-group="value"></chart-attraction>
+    <chart-attraction attraction-group="value"></chart-attraction>
 </div>

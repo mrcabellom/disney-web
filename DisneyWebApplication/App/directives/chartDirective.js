@@ -17,14 +17,14 @@
             restrict: 'E',
             scope: {
                 'attractionGroup': "=",
-                'attractionGroupId': "="
             },
             controller: ['$scope', function ($scope) {
                 var orderedAttractions = $filter('orderBy')($scope.attractionGroup, '+date');
                 $scope.labels = orderedAttractions.map(function (item) {
                     return moment.utc(item.date).format(utils.DATETIME_FORMAT);
                 });
-                $scope.series = ['Tiempo Medio ' + $scope.attractionGroupId];
+                var firstAttraction = $filter('first')(orderedAttractions);
+                $scope.series = ['Tiempo Medio ' + firstAttraction.name];
                 var dataAtttraction = orderedAttractions.map(function (item) {
                     return item.waitTimeAvg;
                 });

@@ -3,11 +3,11 @@
 
     angular.module('disneyApp').factory('attractionsService', AttractionSercice);
 
-    AttractionSercice.inject = ['$http', 'Attraction','utils'];
+    AttractionSercice.inject = ['$http', 'Attraction', 'utils', '$filter'];
 
-    function AttractionSercice($http, Attraction, utils) {
+    function AttractionSercice($http, Attraction, utils, $filter) {
 
-        var endPointApi ='https://apidisneyapp.azurewebsites.net/api/attractions/',
+        var endPointApi = 'https://apidisneyapp.azurewebsites.net/api/attractions/',
             factory = {};
 
         factory.getAttractions = function () {
@@ -24,22 +24,26 @@
             });
         };
 
-        factory.getAttractionsAggregate = function (startDate, endDate, attractions) {
+        factory.getAttractionsAggregate = function (startDate, endDate, selectedAttractions) {
 
-            var attractionEncodeUri = attractions.map(function (item) {
-                return encodeURIComponent(item);
-            });            
+            var mappedAttractions = selectedAttractions.map(function (item) {
+                return encodeURIComponent(item.id);
+            });
 
             var params = {
                 enddate: moment(endDate).format(utils.DATETIME_FORMAT),
                 startdate: moment(startDate).format(utils.DATETIME_FORMAT),
-                attractions: attractionEncodeUri
+                attractions: mappedAttractions
             };
-            return $http.get(endPointApi + 'aggregate', {params: params}).then(function (result) {
-                return result.data;
+            return $http.get(endPointApi + 'aggregate', { params: params }).then(function (result) {
+                return result.data.map(function (item) {
+                    var attraction = $filter('filter')(selectedAttractions, { id: item.attractionId });
+                    item.name = attraction[0].name;
+                    return item;
+                });
             });
         };
-        
+
         return factory;
 
     }

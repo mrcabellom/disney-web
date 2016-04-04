@@ -11,10 +11,7 @@
                 
                 $scope.getAttractionsAggregate = function () {
                     var selectedAttractions = $filter('filter')($scope.attractions, { selected: true }, true);
-                    var mappedAttractions = selectedAttractions.map(function(item){
-                        return item.id;
-                    });
-                    attractionsService.getAttractionsAggregate($scope.startDate, $scope.endDate, mappedAttractions).then(function (result) {
+                    attractionsService.getAttractionsAggregate($scope.startDate, $scope.endDate, selectedAttractions).then(function (result) {
                         $scope.aggregations = result;
                     });
                 };
