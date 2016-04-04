@@ -2,15 +2,19 @@
     'use strict';
     angular.module('disneyApp').directive('attractionsAggregate', AttractionsAggregate);
 
-    AttractionsAggregate.$inject = ['attractionsService'];
+    AttractionsAggregate.$inject = ['attractionsService','$filter'];
 
-    function AttractionsAggregate(attractionsService) {
+    function AttractionsAggregate(attractionsService, $filter) {
         return {
             restrict: 'E',
             controller: ['$scope', function ($scope) {
                 
                 $scope.getAttractionsAggregate = function () {
-                    attractionsService.getAttractionsAggregate($scope.startDate, $scope.endDate, "attraction1").then(function (result) {
+                    var selectedAttractions = $filter('filter')($scope.attractions, { selected: true }, true);
+                    var mappedAttractions = selectedAttractions.map(function(item){
+                        return item.id;
+                    });
+                    attractionsService.getAttractionsAggregate($scope.startDate, $scope.endDate, mappedAttractions).then(function (result) {
                         $scope.aggregations = result;
                     });
                 };

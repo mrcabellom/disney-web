@@ -7,7 +7,7 @@
 
     function AttractionSercice($http, Attraction, utils) {
 
-        var endPointApi = 'https://apidisneyapp.azurewebsites.net/api/attractions/',
+        var endPointApi ='https://apidisneyapp.azurewebsites.net/api/attractions/',
             factory = {};
 
         factory.getAttractions = function () {
@@ -24,28 +24,19 @@
             });
         };
 
-        factory.getAttractionsAggregate = function (startDate, endDate, attractionId) {
+        factory.getAttractionsAggregate = function (startDate, endDate, attractions) {
+
+            var attractionEncodeUri = attractions.map(function (item) {
+                return encodeURIComponent(item);
+            });            
 
             var params = {
                 enddate: moment(endDate).format(utils.DATETIME_FORMAT),
                 startdate: moment(startDate).format(utils.DATETIME_FORMAT),
-                attractionId: attractionId
+                attractions: attractionEncodeUri
             };
             return $http.get(endPointApi + 'aggregate', {params: params}).then(function (result) {
-                return [
-                    {
-                        "id": "1",
-                        "attractionId": "attraction1",
-                        "date": "2014-09-15T12:14:25.7251173",
-                        "waitTime": 4
-                    },
-                    {
-                        "id": "2",
-                        "attractionId": "attraction1",
-                        "date": "2014-09-16T12:14:25.7251173",
-                        "waitTime": 8
-                    }
-                ]
+                return result.data;
             });
         };
         

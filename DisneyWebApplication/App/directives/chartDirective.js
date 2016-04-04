@@ -22,14 +22,14 @@
             controller: ['$scope', function ($scope) {
                 var orderedAttractions = $filter('orderBy')($scope.attractionGroup, '+date');
                 $scope.labels = orderedAttractions.map(function (item) {
-                    return moment(item.date).format(utils.DATETIME_FORMAT);
+                    return moment.utc(item.date).format(utils.DATETIME_FORMAT);
                 });
                 $scope.series = ['Tiempo Medio ' + $scope.attractionGroupId];
                 var dataAtttraction = orderedAttractions.map(function (item) {
-                    return item.waitTime;
+                    return item.waitTimeAvg;
                 });
                 $scope.data = [dataAtttraction];
-                $scope.options = chartOptions;
+                $scope.options = {};
             }],
             templateUrl: '/App/Views/ChartAttraction.html'
         };

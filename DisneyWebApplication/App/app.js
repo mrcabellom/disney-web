@@ -7,6 +7,6 @@
     ];
     var app = angular.module('disneyApp', dependencies);
     app.constant('utils',{
-        DATETIME_FORMAT: 'YYYY-MM-DD HH:mm:ss'
+        DATETIME_FORMAT: 'YYYY-MM-DD HH'
     });
 })();
