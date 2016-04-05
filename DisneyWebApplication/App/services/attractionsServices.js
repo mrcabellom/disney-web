@@ -14,9 +14,9 @@
 
             return $http.get(endPointApi).then(function (result) {
                 var attractions = [];
-                if (result.data.entries && result.data.entries.length > 0) {
-                    for (var i = 0, li = result.data.entries.length; i < li; i++) {
-                        var attraction = new Attraction(result.data.entries[i]);
+                if (result.data && result.data.length > 0) {
+                    for (var i = 0, li = result.data.length; i < li; i++) {
+                        var attraction = new Attraction(result.data[i]);
                         attractions.push(attraction);
                     }
                 }
@@ -27,7 +27,7 @@
         factory.getAttractionsAggregate = function (startDate, endDate, selectedAttractions) {
 
             var mappedAttractions = selectedAttractions.map(function (item) {
-                return encodeURIComponent(item.id);
+                return encodeURIComponent(item.attractionId);
             });
 
             var params = {
@@ -37,7 +37,7 @@
             };
             return $http.get(endPointApi + 'aggregate', { params: params }).then(function (result) {
                 return result.data.map(function (item) {
-                    var attraction = $filter('filter')(selectedAttractions, { id: item.attractionId });
+                    var attraction = $filter('filter')(selectedAttractions, { attractionId: item.attractionId });
                     item.name = attraction[0].name;
                     return item;
                 });
